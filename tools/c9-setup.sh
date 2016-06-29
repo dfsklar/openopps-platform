@@ -16,12 +16,13 @@ echo "npm install"
 npm install
 
 echo "Symlinking to the globally-installed grunt..."
-pushd node_modules/.bin
-ln -s `which grunt` .
-popd
+ln -s `which grunt` node_modules/.bin
 
 echo "Doing initial schema deployment..."
 sh tools/postgres/cleandb.sh
+
+echo "Building assets to make site ready-to-serve..."
+npm run build
 
 echo "Registering sample tasks and launching web server..."
 npm run demo
